@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 09:56:24 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/14 10:47:08 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,20 @@ void	start_game(char *ficher_ber)
 	program = malloc(sizeof(t_program));
 	program->move = 0;
 	program->mlx = mlx_init();
+	printf("je passe 1/n");
 	program = calcul_map(program, ficher_ber);
+	printf("je passe 2/n");
 	if (map_possible(program))
 	{
 		error_message("chemin");
 		exit(0);
 	}
+	printf("je passe 3/n");
 	program->window = new_window(program, program->window.size.x,
 			program->window.size.y, "./so_long");
+	printf("je passe 4/n");
 	charge_image(program);
+	printf("je passe 5/n");
 	program->map = init_map(program);
 	mlx_hook(program->window.reference, 17, 0, close_wd, program);
 	mlx_hook(program->window.reference, 2, 0, key_check, program);

@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 09:24:20 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/14 10:47:56 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+	printf("je passe main/n");
 	if (argc == 2)
 		check_extension("ber", argv[1]);
 	return (0);
