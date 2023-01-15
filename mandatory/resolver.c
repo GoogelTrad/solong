@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 14:11:12 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 16:02:43 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,25 @@ int	resolv_map(t_program *program, int x, int y)
 	map_cpy = program->map;
 	program->img_pos.x = x;
 	program->img_pos.y = y;
+	affiche_map(map_cpy);
 	while (map_cpy[program->img_pos.y][program->img_pos.x])
 	{
 		if (map_cpy[program->img_pos.y][program->img_pos.x] == 'C')
-			if (chemin_possible(program, map_cpy, program->img_pos.x, program->img_pos.y))
+			if (chemin_possible(map_cpy, program->img_pos.x, program->img_pos.y))
 				return (1);
 			
 	}	
 }
 
-int	chemin_possible(t_program *program, char **map, int x, int y)
+int	chemin_possible(char **map, int x, int y)
 {
-	while (map[y][x])
+	while (x != 1 && y != 1)
 	{
-		if(map[y + 1][x] == '0')
-		{
-			change_place(map, x, y, 1, 0);
-		}
+		if (map[y - 1][x] != '1')
+			change_place(map, x, y, -1, 0);
+		else if (map[y - 1][x] == '1' && map[y][x - 1] != '1')
+			change_place(map, x, y, 0, -1);
+			
 	}
 }
 
@@ -107,4 +109,16 @@ void	change_place(char **map, int x, int y, int i, int j)
 	temp = map[y][x];
 	map[y][x] = map[y + i][x + j];
 	map[y + i][x + j] = temp;
+}
+
+void	direction(int x, int y, int *direction_x, int *direction_y)
+{
+	if (x <= 1)
+		*direction_x = -1;
+	else 
+		*direction_x = 1;
+	if (y <= 1)
+		*direction_y = -1;
+	else
+		*direction_y = 1;
 }

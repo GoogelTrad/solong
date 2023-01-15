@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 14:01:21 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 15:34:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	key_check(int keycode, t_program *program)
 		exit(0);
 	}
 	update_map(program);
-	affiche_map(program);
+	affiche_map(program->map);
 	write(1, "Nombre de mouvement du joueur : ", 33);
 	printf_shell_mv(program->move);
 	write(1, "\n", 1);

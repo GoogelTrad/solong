@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 12:57:45 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 15:33:04 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	update_map(t_program *program)
 	}
 }
 
-void	affiche_map(t_program *program)
+void	affiche_map(char **map)
 {
 	int	x;
 	int	y;
@@ -95,16 +95,16 @@ void	affiche_map(t_program *program)
 	x = 0;
 	y = 0;
 	write(1, "\n", 1);
-	while (program->map[x][y])
+	while (map[x][y])
 	{
-		if (program->map[x][y] == '\n')
+		if (map[x][y] == '\n')
 		{
 			x++;
 			y = 0;
 			write(1, "\n", 1);
 		}
 		write(1, " ", 1);
-		write(1, &program->map[x][y], 1);
+		write(1, &map[x][y], 1);
 		y++;
 	}
 	write(1, "\n\n", 2);

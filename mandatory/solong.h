@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 12:03:04 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 15:34:08 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_program
 void		start_game(char *ficher_ber);
 char		**init_map(t_program *program);
 t_program	*calcul_map(t_program *program, char *fichier_ber);
-void		affiche_map(t_program *program);
+void		affiche_map(char **map);
 void		update_map(t_program *program);
 //window.c
 int			close_wd(void);
