@@ -6,7 +6,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = solong
 NAME_BONUS = solong_bonus
-LINKS = -lmlx -framework OpenGL -framework AppKit 
+LINKS = -Lmlx -lmlx -framework OpenGL -framework AppKit 
 
 all: $(NAME)
 

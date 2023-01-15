@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/13 11:09:13 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 14:11:12 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,40 @@ int	verif_mur(t_program *program)
 		program->img_pos.y++;
 	}
 	return (0);
+}
+
+int	resolv_map(t_program *program, int x, int y)
+{
+	char	**map_cpy;
+
+	map_cpy = program->map;
+	program->img_pos.x = x;
+	program->img_pos.y = y;
+	while (map_cpy[program->img_pos.y][program->img_pos.x])
+	{
+		if (map_cpy[program->img_pos.y][program->img_pos.x] == 'C')
+			if (chemin_possible(program, map_cpy, program->img_pos.x, program->img_pos.y))
+				return (1);
+			
+	}	
+}
+
+int	chemin_possible(t_program *program, char **map, int x, int y)
+{
+	while (map[y][x])
+	{
+		if(map[y + 1][x] == '0')
+		{
+			change_place(map, x, y, 1, 0);
+		}
+	}
+}
+
+void	change_place(char **map, int x, int y, int i, int j)
+{
+	char	temp;
+	
+	temp = map[y][x];
+	map[y][x] = map[y + i][x + j];
+	map[y + i][x + j] = temp;
 }

@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 09:02:34 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/15 14:01:21 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_window	new_window(t_program *program, int widht, int height, char *name)
 
 int	close_wd(void)
 {
+	write(1, "Arret du programme\n", 19);
 	exit(0);
 }
 
