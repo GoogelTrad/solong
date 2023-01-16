@@ -84,22 +84,27 @@ int	resolv_map(t_program *program, int x, int y)
 	while (map_cpy[program->img_pos.y][program->img_pos.x])
 	{
 		if (map_cpy[program->img_pos.y][program->img_pos.x] == 'C')
-			if (chemin_possible(map_cpy, program->img_pos.x, program->img_pos.y))
+			if (chemin_possible(map_cpy, program->img_pos.x, program->img_pos.y, 1, 1))
 				return (1);
 			
 	}	
 }
 
-int	chemin_possible(char **map, int x, int y)
+int	chemin_possible(char **map, int x, int y, int position_x, int position_y)
 {
-	while (x != 1 && y != 1)
+	while (map[position_y][position_x] == '1')
+		position_y ++;
+	while (x != position_x && y != position_y)
 	{
-		if (map[y - 1][x] != '1')
-			change_place(map, x, y, -1, 0);
-		else if (map[y - 1][x] == '1' && map[y][x - 1] != '1')
-			change_place(map, x, y, 0, -1);
-			
+		while (map[y - 1][0] != '!' && y != position_y)
+			change_place(map, x, y--, -1, 0);
+		while (map[y][x - 1] != '1' && x != position_x)
+			change_place(map, x--, y, 0, -1);
+		if (map[y - 1][x] == '1' && map[y][x - 1] == '1')
+			while (map[y - 1][x] == '1')
+				change_place(map, x++, y, 0, 1);
 	}
+	return (0);
 }
 
 void	change_place(char **map, int x, int y, int i, int j)
@@ -109,16 +114,4 @@ void	change_place(char **map, int x, int y, int i, int j)
 	temp = map[y][x];
 	map[y][x] = map[y + i][x + j];
 	map[y + i][x + j] = temp;
-}
-
-void	direction(int x, int y, int *direction_x, int *direction_y)
-{
-	if (x <= 1)
-		*direction_x = -1;
-	else 
-		*direction_x = 1;
-	if (y <= 1)
-		*direction_y = -1;
-	else
-		*direction_y = 1;
 }
