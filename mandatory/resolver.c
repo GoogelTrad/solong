@@ -6,45 +6,11 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 16:02:43 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/17 12:44:46 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-
-int	map_possible(t_program *program)
-{
-	if (verif_mur(program))
-		return (1);
-	program->img_pos.x = 0;
-	program->img_pos.y = 0;
-	while (program->map[program->img_pos.y][program->img_pos.x++] != '\0')
-	{
-		if (program->map[program->img_pos.y][program->img_pos.x] == 'P'
-			&& verif_autour(program, program->img_pos.x, program->img_pos.y))
-			return (1);
-		else if (program->map[program->img_pos.y][program->img_pos.x] == 'C'
-			&& verif_autour(program, program->img_pos.x, program->img_pos.y))
-			return (1);
-		else if (program->map[program->img_pos.y][program->img_pos.x] == 'E'
-			&& verif_autour(program, program->img_pos.x, program->img_pos.y))
-			return (1);
-		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
-		{
-			program->img_pos.x = 0;
-			program->img_pos.y++;
-		}
-	}
-	return (0);
-}
-
-int	verif_autour(t_program *program, int x, int y)
-{
-	if (program->map[y + 1][x] == '1' && program->map[y - 1][x] == '1'
-			&& program->map[y][x + 1] == '1' && program->map[y][x - 1] == '1')
-		return (1);
-	return (0);
-}
 
 int	verif_mur(t_program *program)
 {
@@ -73,45 +39,48 @@ int	verif_mur(t_program *program)
 	return (0);
 }
 
-int	resolv_map(t_program *program, int x, int y)
+void get_pos(t_program *program, int *x, int *y, char element)
 {
-	char	**map_cpy;
-
-	map_cpy = program->map;
-	program->img_pos.x = x;
-	program->img_pos.y = y;
-	affiche_map(map_cpy);
-	while (map_cpy[program->img_pos.y][program->img_pos.x])
-	{
-		if (map_cpy[program->img_pos.y][program->img_pos.x] == 'C')
-			if (chemin_possible(map_cpy, program->img_pos.x, program->img_pos.y, 1, 1))
-				return (1);
-			
-	}	
-}
-
-int	chemin_possible(char **map, int x, int y, int position_x, int position_y)
-{
-	while (map[position_y][position_x] == '1')
-		position_y ++;
-	while (x != position_x && y != position_y)
-	{
-		while (map[y - 1][0] != '!' && y != position_y)
-			change_place(map, x, y--, -1, 0);
-		while (map[y][x - 1] != '1' && x != position_x)
-			change_place(map, x--, y, 0, -1);
-		if (map[y - 1][x] == '1' && map[y][x - 1] == '1')
-			while (map[y - 1][x] == '1')
-				change_place(map, x++, y, 0, 1);
-	}
-	return (0);
-}
-
-void	change_place(char **map, int x, int y, int i, int j)
-{
-	char	temp;
+	program->img_pos.x = 0;
+	program->img_pos.x = 0;
 	
-	temp = map[y][x];
-	map[y][x] = map[y + i][x + j];
-	map[y + i][x + j] = temp;
+	while (program->map[program->img_pos.y][program->img_pos.x] != '\0')
+	{
+		if (program->map[program->img_pos.y][program->img_pos.x] == element)
+		{
+			*x = program->img_pos.x;
+			*y = program->img_pos.y;
+		}
+		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
+		{
+			program->img_pos.x = 0;
+			program->img_pos.y++;
+		}
+		program->img_pos.x++;
+	}
+}
+
+void	revolv_map(t_program *program)
+{
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = 0;
+	pos_y = 0;
+	program->img_pos.x = 0;
+	program->img_pos.x = 0;
+	get_pos(program, &pos_x, &pos_y, 'P');
+	while (program->map[program->img_pos.y][program->img_pos.x] != '\0')
+	{
+		if ()
+		{
+			
+		}
+		else if(program->map[program->img_pos.y][program->img_pos.x] == '\n')
+		{
+			program->img_pos.x = 0;
+			program->img_pos.y++;
+		}
+		program->img_pos.x++;
+	}
 }

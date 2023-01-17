@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 15:34:08 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/17 11:13:37 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,9 @@ void		ft_putchar(char c);
 int			verif_mur(t_program *program);
 int			verif_autour(t_program *program, int x, int y);
 int			map_possible(t_program *program);
+int			chemin_possible(char **map, int x, int y, int position_x, int position_y);
+void		change_place(char **map, int x, int y, int i, int j);
+int			resolv_map(t_program *program, int x, int y);
 void		count_map(t_program *program, int *x, int *y);
 //main.c
 void		check_extension(char *extension, char *fichier);

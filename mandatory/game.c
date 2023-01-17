@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 15:33:04 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/17 12:30:48 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	start_game(char *ficher_ber)
 	program->move = 0;
 	program->mlx = mlx_init();
 	program = calcul_map(program, ficher_ber);
-	if (map_possible(program))
+	if (verif_mur(program))
 	{
-		//error_message("chemin");
+		error_message("chemin");
 		exit(0);
 	}
 	program->window = new_window(program, program->window.size.x,
