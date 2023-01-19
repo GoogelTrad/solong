@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/18 15:39:11 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 15:42:08 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
 //resolver.c
 int			verif_mur(t_program *program);
-void			resolv_map(t_program *program);
+void		resolv_map(t_program *program);
 char		**copy_map(t_program *program);
 int			path_finding(t_program *program, char **map, int x, int y);
 //main.c

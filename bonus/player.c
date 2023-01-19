@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/13 13:39:47 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:20:51 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	mv_forward(t_program *program)
 	if (program->map[y - 1][x] == 'E' && !(check_conso(program)))
 	{
 		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
-		exit(0);
+		close_wd(program);
 	}
 	else if ((program->map[y - 1][x] == '0') & touching_mob(program, x, y - 1))
 	{
@@ -49,7 +49,7 @@ int	mv_left(t_program *program)
 	if (program->map[y][x - 1] == 'E' && !(check_conso(program)))
 	{
 		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
-		exit(0);
+		close_wd(program);
 	}
 	else if ((program->map[y][x - 1] == '0') & touching_mob(program, x - 1, y))
 	{
@@ -74,7 +74,7 @@ int	mv_right(t_program *program)
 	if (program->map[y][x + 1] == 'E' && !(check_conso(program)))
 	{
 		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 50);
-		exit(0);
+		close_wd(program);exit(0);
 	}
 	else if ((program->map[y][x + 1] == '0') & touching_mob(program, x + 1, y))
 	{
@@ -99,7 +99,7 @@ int	mv_backward(t_program *program)
 	if (program->map[y + 1][x] == 'E' && !(check_conso(program)))
 	{
 		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
-		exit(0);
+		close_wd(program);
 	}
 	else if ((program->map[y + 1][x] == '0') & touching_mob(program, x, y + 1))
 	{

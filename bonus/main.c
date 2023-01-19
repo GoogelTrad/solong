@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 09:28:37 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:08:34 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,11 @@ void	error_message(char *type)
 {
 	write(1, "Error\n", 6);
 	if (ft_strncmp(type, "extension", 10) == 0)
-	{
 		write(1, "Mauvaise extension de fichier\n", 30);
-	}
 	else if (ft_strncmp(type, "mauvais", 7) == 0)
-	{
 		write(1, "Map introuvable, mauvais nom de fichier ?\n", 42);
-	}
 	else if (ft_strncmp(type, "chemin", 6) == 0)
-	{
 		write(1, "La map ne peut pas etre resolu !\n", 33);
-	}
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

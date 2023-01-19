@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:32:36 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 10:09:31 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:18:55 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	touching_mob(t_program *program, int x, int y)
 	if (program->map[y][x] == 'M')
 	{
 		write(1, "Oh non, vous avez été tuer par un monstre !\n", 46);
-		exit(0);
+		close_wd(program);
 	}
 	return (1);
 }

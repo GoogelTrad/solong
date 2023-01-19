@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 10:08:27 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:18:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ t_window	new_window(t_program *program, int widht, int height, char *name)
 	return (window);
 }
 
-int	close_wd(void)
+int	close_wd(t_program *program)
 {
+	free_map(program->map, program->window.size.y / 48);
+	free(program);
 	exit(0);
 }
 
@@ -42,6 +44,7 @@ int	key_check(int keycode, t_program *program)
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);
+		free(program);
 		exit(0);
 	}
 	update_map(program);
@@ -71,4 +74,16 @@ void	charge_image(t_program *program)
 			"./images/entity/characters/player/right_off_1.xpm");
 	program->stock.mob = new_sprite(program->mlx,
 			"./images/entity/monsters/slime/slime_1.xpm");
+}
+
+void	free_map(char **map, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j)
+	{
+		free(map[i]);
+		i++;
+	}
 }

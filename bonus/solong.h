@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 10:40:57 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:04:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ void		affiche_map(t_program *program);
 void		update_map(t_program *program);
 t_program	*calcul_map(t_program *program, char *fichier_ber);
 //window.c
-int			close_wd(void);
+int			close_wd(t_program *program);
 t_window	new_window(t_program *program, int widht, int height, char *name);
 int			key_check(int keycode, t_program *program);
 void		charge_image(t_program *program);
+void		free_map(char **map, int j);
 //image.c
 t_image		new_sprite(void *mlx, char *path);
 t_image		new_image(void *mlx, int widht, int height);
@@ -131,9 +132,9 @@ void		ft_putchar(char c);
 int			touching_mob(t_program *program, int x, int y);
 //resolver.c
 int			verif_mur(t_program *program);
-int			verif_autour(t_program *program, int x, int y);
-int			map_possible(t_program *program);
-void		count_map(t_program *program, int *x, int *y);
+void		resolv_map(t_program *program);
+int			path_finding(t_program *program, char **map, int x, int y);
+char		**copy_map(t_program *program);
 //main.c
 void		check_extension(char *extension, char *fichier);
 void		error_message(char *type);
