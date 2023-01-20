@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 18:03:22 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 16:27:30 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 17:12:07 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	put_element_map(t_program *program, char element, int x, int y)
 
 void	put_text(t_program *program, int x, int y)
 {
-	char *pas;
+	char	*pas;
 
 	pas = ft_itoa(program->move);
 	mlx_string_put(program->mlx, program->window.reference, x, y,

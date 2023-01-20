@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 16:20:51 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 17:16:37 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	mv_forward(t_program *program)
 	temp_y = program->map[y][x];
 	if (program->map[y - 1][x] == 'E' && !(check_conso(program)))
 	{
-		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
+		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
 	else if ((program->map[y - 1][x] == '0') & touching_mob(program, x, y - 1))
@@ -48,7 +48,7 @@ int	mv_left(t_program *program)
 	temp_x = program->map[y][x];
 	if (program->map[y][x - 1] == 'E' && !(check_conso(program)))
 	{
-		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
+		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
 	else if ((program->map[y][x - 1] == '0') & touching_mob(program, x - 1, y))
@@ -73,8 +73,8 @@ int	mv_right(t_program *program)
 	temp_x = program->map[y][x];
 	if (program->map[y][x + 1] == 'E' && !(check_conso(program)))
 	{
-		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 50);
-		close_wd(program);exit(0);
+		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 50);
+		close_wd(program);
 	}
 	else if ((program->map[y][x + 1] == '0') & touching_mob(program, x + 1, y))
 	{
@@ -98,7 +98,7 @@ int	mv_backward(t_program *program)
 	temp_y = program->map[y][x];
 	if (program->map[y + 1][x] == 'E' && !(check_conso(program)))
 	{
-		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
+		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
 	else if ((program->map[y + 1][x] == '0') & touching_mob(program, x, y + 1))

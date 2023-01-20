@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:57:49 by cmichez           #+#    #+#             */
-/*   Updated: 2022/12/26 19:37:54 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 16:09:24 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	check_buffer(char **line, char *tmp)
 	ft_strncpy(*line, tmp, i + 1);
 	j = tmp[i];
 	reset_buffer(tmp);
+	free(*line);
 	if (j == '\0')
 		return (0);
 	return (1);

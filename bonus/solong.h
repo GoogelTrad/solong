@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 16:04:25 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 18:11:44 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,13 @@ typedef struct s_player
 typedef struct s_program
 {
 	void		*mlx;
+	int			x;
+	int			y;
 	int			move;
 	char		**map;
+	int			p_map;
+	int			c_map;
+	int			e_map;
 	t_window	window;
 	t_image		sprite;
 	t_vector	sprite_position;
@@ -117,7 +122,7 @@ char		*ft_strncat(char *dest, char *src, int n);
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);
 int			nb_lignes_fd(char *fichier_ber);
-int			check_map(char **map, t_program *program);
+int			check_map(t_program *program);
 int			map_error(int player, int sortie, int conso);
 //player.c
 int			mv_forward(t_program *program);

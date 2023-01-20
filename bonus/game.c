@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 16:16:01 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 18:17:01 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**init_map(t_program *program)
 
 	y = 0;
 	x = 0;
-	if (check_map(program->map, program))
+	if (check_map(program))
 		close_wd(program);
 	put_floor(program, 0, 0);
 	program->img_pos.x = 0;
@@ -112,7 +112,6 @@ void	affiche_map(t_program *program)
 t_program	*calcul_map(t_program *program, char *fichier_ber)
 {
 	int	x;
-	int	fd;
 	int	temp_x;
 	int	y;
 	int	i;
@@ -122,16 +121,14 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	y = nb_lignes_fd(fichier_ber);
 	temp_x = 0;
 	program->map = mapping(program, fichier_ber);
-	fd = open(fichier_ber, O_RDONLY);
 	while (i < y)
 	{
-		x = ft_strlen(get_next_line(fd));
+		x = ft_strlen(program->map[i]);
 		if (temp_x < x)
 			temp_x = x;
 		i++;
 	}
 	program->window.size.x = (temp_x - 1) * 46;
 	program->window.size.y = y * 48;
-	close(fd);
 	return (program);
 }

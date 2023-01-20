@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 09:51:04 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/20 18:22:23 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,41 @@ int	nb_lignes_fd(char *fichier_ber)
 		i++;
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (i);
 }
 
-int	check_map(char **map, t_program *program)
+int	check_map(t_program *program)
 {
-	int	player;
-	int	sortie;
-	int	conso;
-
+	program->c_map = 0;
+	program->e_map = 0;
+	program->p_map = 0;
 	program->img_pos.x = 0;
 	program->img_pos.y = 0;
-	player = 0;
-	sortie = 0;
-	conso = 0;
-	while (map[program->img_pos.y][program->img_pos.x] != '\0')
+	while (program->map[program->img_pos.y][program->img_pos.x] != '\0')
 	{
-		if (map[program->img_pos.y][program->img_pos.x] == 'P')
-			player++;
-		else if (map[program->img_pos.y][program->img_pos.x] == 'E')
-			sortie++;
-		else if (map[program->img_pos.y][program->img_pos.x] == 'C')
-			conso++;
-		else if (map[program->img_pos.y][program->img_pos.x] == '\n')
+		if (program->map[program->img_pos.y][program->img_pos.x] == 'P')
+			program->p_map++;
+		else if (program->map[program->img_pos.y][program->img_pos.x] == 'E')
+			program->e_map++;
+		else if (program->map[program->img_pos.y][program->img_pos.x] == 'C')
+			program->c_map++;
+		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
 		{
 			program->img_pos.x = 0;
 			program->img_pos.y++;
 		}
+		else if (program->map[program->img_pos.y][program->img_pos.x] != 'M'
+			&& program->map[program->img_pos.y][program->img_pos.x] != '1'
+			&& program->map[program->img_pos.y][program->img_pos.x] != '0')
+		{
+			error_message("caractere");
+			close_wd(program);
+		}
 		program->img_pos.x++;
 	}
-	return (map_error(player, sortie, conso));
+	return (map_error(program->p_map, program->e_map, program->c_map));
 }
 
 int	map_error(int player, int sortie, int conso)
