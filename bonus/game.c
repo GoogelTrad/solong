@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 12:39:41 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:17:13 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ void	start_game(char *ficher_ber)
 	program = malloc(sizeof(t_program));
 	program->move = 0;
 	program->mlx = mlx_init();
+	write(1, "1", 1);
 	program = calcul_map(program, ficher_ber);
+	write(1, "2", 1);
 	if (verif_mur(program))
 		close_wd(program);
+	write(1, "3", 1);
 	resolv_map(program);
+	write(1, "4", 1);
 	program->window = new_window(program, program->window.size.x,
 			program->window.size.y, "./so_long");
 	charge_image(program);
@@ -117,17 +121,22 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	int	i;
 
 	program->map = mapping(program, fichier_ber);
+	affiche_map(program);
 	x = ft_strlen(program->map[0]);
 	i = 0;
 	y = nb_lignes_fd(fichier_ber);
 	temp_x = x;
 	while (i < y)
 	{
+		//printf("i = %d, y = %d\n", i, y);
 		x = ft_strlen(program->map[i]);
+		//if ((i + 1) == y)
+		//	temp_x--;
+		//printf("x= %d, temp = %d\n", x, temp_x);
 		if (temp_x != x)
 		{
 			error_message("rectangle");
-			//close_wd(program);
+			close_wd(program);
 		}
 		i++;
 	}

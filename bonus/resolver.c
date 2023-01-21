@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 12:47:35 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:12:56 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	verif_mur(t_program *program)
 			return (1);
 		program->img_pos.x++;
 	}
+	write(1, "4", 1);
 	program->img_pos.x--;
 	while (program->img_pos.y < temp_y)
 	{
@@ -36,6 +37,7 @@ int	verif_mur(t_program *program)
 			return (1);
 		program->img_pos.y++;
 	}
+	write(1, "5", 1);
 	return (0);
 }
 

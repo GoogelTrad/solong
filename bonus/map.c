@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 12:24:58 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:16:52 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	**malloc_map(char *fichier_ber)
 	int		ligne;
 	int		i;
 
-	ligne = nb_lignes_fd(fichier_ber);
+	ligne = nb_lignes_fd(fichier_ber) + 1;
+	printf("ligne = %d\n", ligne);
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
 	map = malloc(sizeof(char *) * (ligne + 1));
@@ -61,6 +62,8 @@ int	nb_lignes_fd(char *fichier_ber)
 		i++;
 		line = get_next_line(fd);
 	}
+	if (!line)
+		i--;
 	free(line);
 	close(fd);
 	return (i);
