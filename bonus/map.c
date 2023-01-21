@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 18:22:23 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:24:58 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ char	**malloc_map(char *fichier_ber)
 	ligne = nb_lignes_fd(fichier_ber);
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
-	map = malloc(sizeof(char *) * ligne);
+	map = malloc(sizeof(char *) * (ligne + 1));
 	while (i < ligne)
 	{
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	map[i] = NULL;
 	close(fd);
 	return (map);
 }
@@ -85,13 +86,8 @@ int	check_map(t_program *program)
 			program->img_pos.x = 0;
 			program->img_pos.y++;
 		}
-		else if (program->map[program->img_pos.y][program->img_pos.x] != 'M'
-			&& program->map[program->img_pos.y][program->img_pos.x] != '1'
-			&& program->map[program->img_pos.y][program->img_pos.x] != '0')
-		{
-			error_message("caractere");
-			close_wd(program);
-		}
+		not_caracter(program,
+			program->map[program->img_pos.y][program->img_pos.x]);
 		program->img_pos.x++;
 	}
 	return (map_error(program->p_map, program->e_map, program->c_map));

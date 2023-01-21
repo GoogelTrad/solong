@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 18:23:01 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:17:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	error_message(char *type)
 		write(1, "La map ne peut pas etre resolu !\n", 33);
 	else if (ft_strncmp(type, "caractere", 9) == 0)
 		write(1, "Caractere inconnu dans la map !\n", 32);
+	else if (ft_strncmp(type, "rectangle", 9) == 0)
+		write(1, "La map n'est pas rectangulaire !\n", 33);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

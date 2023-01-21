@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 18:17:01 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:39:41 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,19 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	int	y;
 	int	i;
 
-	x = 0;
+	program->map = mapping(program, fichier_ber);
+	x = ft_strlen(program->map[0]);
 	i = 0;
 	y = nb_lignes_fd(fichier_ber);
-	temp_x = 0;
-	program->map = mapping(program, fichier_ber);
+	temp_x = x;
 	while (i < y)
 	{
 		x = ft_strlen(program->map[i]);
-		if (temp_x < x)
-			temp_x = x;
+		if (temp_x != x)
+		{
+			error_message("rectangle");
+			//close_wd(program);
+		}
 		i++;
 	}
 	program->window.size.x = (temp_x - 1) * 46;

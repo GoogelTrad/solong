@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 18:11:44 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:09:34 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ typedef struct s_program
 	t_player	player;
 	t_stock		stock;
 }				t_program;
-//game.c
+//game.c x
 void		start_game(char *ficher_ber);
 char		**init_map(t_program *program);
 void		affiche_map(t_program *program);
 void		update_map(t_program *program);
 t_program	*calcul_map(t_program *program, char *fichier_ber);
-//window.c
+//window.c x
 int			close_wd(t_program *program);
 t_window	new_window(t_program *program, int widht, int height, char *name);
 int			key_check(int keycode, t_program *program);
@@ -102,44 +102,47 @@ void		free_map(char **map, int j);
 t_image		new_sprite(void *mlx, char *path);
 t_image		new_image(void *mlx, int widht, int height);
 void		put_img(t_program *program, t_image img, int x, int y);
-//floors.c
+//floors.c x
 void		put_floor(t_program *program, int x, int y);
 void		put_element_map(t_program *program, char element, int x, int y);
 void		put_text(t_program *program, int x, int y);
 int			count_size(int n);
 char		*ft_itoa(int n);
-//parsing.c
+//parsing.c x
 char		*get_next_line(int fd);
 void		reset_buffer(char *buffer);
 int			check_buffer(char **line, char *tmp);
-//utils.c
+
+//utils.c x 
 int			ft_strlen(char *str);
 char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strncpy(char *dest, char *src, int n);
 char		*ft_strncat(char *dest, char *src, int n);
-//map.c
+//map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);
-int			nb_lignes_fd(char *fichier_ber);
 int			check_map(t_program *program);
+int			nb_lignes_fd(char *fichier_ber);
 int			map_error(int player, int sortie, int conso);
 //player.c
 int			mv_forward(t_program *program);
 int			mv_left(t_program *program);
 int			mv_right(t_program *program);
 int			mv_backward(t_program *program);
-//event.c
+void		not_caracter(t_program *program, char element);
+//event.c x
 int			open_chest(t_program *program);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
 int			touching_mob(t_program *program, int x, int y);
-//resolver.c
+//resolver.c x
 int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);
 int			path_finding(t_program *program, char **map, int x, int y);
 char		**copy_map(t_program *program);
+void		path_not_finding(t_program *program, char **map, int x, int y);
 //main.c
 void		check_extension(char *extension, char *fichier);
 void		error_message(char *type);

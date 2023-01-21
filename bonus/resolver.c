@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 18:14:33 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:47:35 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,31 @@ int	verif_mur(t_program *program)
 	return (0);
 }
 
+void	path_not_finding(t_program *program, char **map, int x, int y)
+{
+	if (!path_finding(program, map, x, y))
+	{
+		error_message("chemin");
+		free_map(map, program->window.size.y / 48);
+		close_wd(program);
+	}
+}
+
 void	resolv_map(t_program *program)
 {
 	char	**map;
 
 	program->img_pos.x = 0;
 	program->img_pos.y = 0;
+	write(1, "1", 1);
 	while (program->map[program->img_pos.y][program->img_pos.x])
 	{
 		if (program->map[program->img_pos.y][program->img_pos.x] == 'C' ||
 			program->map[program->img_pos.y][program->img_pos.x] == 'P')
 		{
 			map = copy_map(program);
-			if (!path_finding(program, map, program->img_pos.x,
-					program->img_pos.y))
-			{
-				error_message("chemin");
-				free_map(map, program->window.size.y / 48);
-				close_wd(program);
-			}
+			path_not_finding(program, map, program->img_pos.x,
+				program->img_pos.y);
 			free_map(map, program->window.size.y / 48);
 		}
 		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')

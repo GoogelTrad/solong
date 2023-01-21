@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 17:16:37 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/21 12:09:24 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,14 @@ int	mv_backward(t_program *program)
 	}
 	program->stock.player = program->player.bd;
 	return (1);
+}
+
+void	not_caracter(t_program *program, char element)
+{
+	if (element != 'M' && element != '1' && element != '0' && element != 'P'
+		&& element != 'C' && element != 'E')
+	{
+		error_message("caractere");
+		close_wd(program);
+	}
 }
