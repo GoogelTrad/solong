@@ -19,18 +19,18 @@ void	start_game(char *ficher_ber)
 	program = malloc(sizeof(t_program));
 	program->move = 0;
 	program->mlx = mlx_init();
-	write(1, "1", 1);
 	program = calcul_map(program, ficher_ber);
-	write(1, "2", 1);
 	if (verif_mur(program))
 		close_wd(program);
-	write(1, "3", 1);
-	resolv_map(program);
+	//resolv_map(program);
 	write(1, "4", 1);
 	program->window = new_window(program, program->window.size.x,
 			program->window.size.y, "./so_long");
+	write(1, "5", 1);
 	charge_image(program);
+	write(1, "6", 1);
 	program->map = init_map(program);
+	write(1, "7", 1);
 	mlx_hook(program->window.reference, 17, 0, close_wd, program);
 	mlx_hook(program->window.reference, 2, 0, key_check, program);
 	mlx_loop(program->mlx);
@@ -95,22 +95,21 @@ void	affiche_map(t_program *program)
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
 	write(1, "\n", 1);
-	while (program->map[x][y])
+	while (program->map[y])
 	{
-		if (program->map[x][y] == '\n')
+		x = 0;
+		while (program->map[y][x] != '\n')
 		{
+			write(1, " ", 1);
+			write(1, &program->map[y][x], 1);
 			x++;
-			y = 0;
-			write(1, "\n", 1);
 		}
-		write(1, " ", 1);
-		write(1, &program->map[x][y], 1);
+		write(1, "\n", 1);
 		y++;
 	}
-	write(1, "\n\n", 2);
+	write(1, "\n", 2);
 }
 
 t_program	*calcul_map(t_program *program, char *fichier_ber)
@@ -121,7 +120,6 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	int	i;
 
 	program->map = mapping(program, fichier_ber);
-	affiche_map(program);
 	x = ft_strlen(program->map[0]);
 	i = 0;
 	y = nb_lignes_fd(fichier_ber);

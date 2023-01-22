@@ -24,11 +24,10 @@ int	verif_mur(t_program *program)
 	while (program->img_pos.x < temp_x)
 	{
 		if (program->map[0][program->img_pos.x] != '1'
-			|| program->map[temp_y - 1][program->img_pos.x] != '1')
+			|| program->map[temp_y][program->img_pos.x] != '1')
 			return (1);
 		program->img_pos.x++;
 	}
-	write(1, "4", 1);
 	program->img_pos.x--;
 	while (program->img_pos.y < temp_y)
 	{
@@ -37,27 +36,49 @@ int	verif_mur(t_program *program)
 			return (1);
 		program->img_pos.y++;
 	}
-	write(1, "5", 1);
 	return (0);
-}
-
-void	path_not_finding(t_program *program, char **map, int x, int y)
-{
-	if (!path_finding(program, map, x, y))
-	{
-		error_message("chemin");
-		free_map(map, program->window.size.y / 48);
-		close_wd(program);
-	}
 }
 
 void	resolv_map(t_program *program)
 {
 	char	**map;
+	int		x;
+	int		y;
+
+	y = 0;
+	affiche_map(program);
+	while (program->map[y])
+	{
+		x = 0;
+		write(1, "coucou ", 7);
+		while (program->map[y][x] != '\n')
+		{
+			printf("x = %d\n", x);
+			printf("Je suis dans la boucle\n");
+			if (program->map[y][x] == 'C' || program->map[y][x] == 'P')
+			{
+				map = copy_map(program);
+				if (!path_finding(program, map, x, y))
+				{
+					error_message("chemin");
+					free_map(map, program->window.size.y / 48);
+					close_wd(program);
+				}
+				free_map(map, program->window.size.y / 48);
+			}
+			x++;
+		}
+		write(1, "\n", 1);
+		y++;
+	}
+}
+
+/*void	resolv_map(t_program *program)
+{
+	char	**map;
 
 	program->img_pos.x = 0;
 	program->img_pos.y = 0;
-	write(1, "1", 1);
 	while (program->map[program->img_pos.y][program->img_pos.x])
 	{
 		if (program->map[program->img_pos.y][program->img_pos.x] == 'C' ||
@@ -75,7 +96,7 @@ void	resolv_map(t_program *program)
 		}
 		program->img_pos.x++;
 	}
-}
+}*/
 
 int	path_finding(t_program *program, char **map, int x, int y)
 {

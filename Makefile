@@ -6,15 +6,17 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = solong
 NAME_BONUS = solong_bonus
-LINKS = -Lmlx -lmlx -framework OpenGL -framework AppKit 
+MACLINKS = -Lmlx -lmlx -framework OpenGL -framework AppKit 
+LLINKS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+COMPIL_LINUX = -I/usr/include -Imlx_linux
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	gcc $(FLAGS) $(LINKS) $(OBJS) -o $(NAME)
+	gcc $(OBJS) $(LLINKS) -o $(NAME)
 
 bonus: $(OBJS_BONUS)
-	gcc $(FLAGS) $(LINKS) $(OBJS_BONUS) -o $(NAME_BONUS)
+	gcc $(OBJS_BONUS) $(LLINKS) -o $(NAME_BONUS)
 
 clean: 
 	rm -rf $(OBJS) $(OBJS_BONUS)
@@ -23,8 +25,8 @@ fclean: clean
 	rm -rf $(NAME) $(NAME_BONUS)
 
 re: fclean all
-	
+
 .PHONY: all ${NAME} clean flcean re
 
 %.o: %.c
-	gcc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) $(COMPIL_LINUX) -c $< -o $@

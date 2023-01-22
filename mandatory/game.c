@@ -119,6 +119,7 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	y = nb_lignes_fd(fichier_ber);
 	temp_x = 0;
 	program->map = mapping(program, fichier_ber);
+	//affiche_map(program);
 	fd = open(fichier_ber, O_RDONLY);
 	while (i < y)
 	{

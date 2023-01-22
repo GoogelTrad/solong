@@ -24,7 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 
 typedef struct s_vector
 {

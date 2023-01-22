@@ -33,7 +33,6 @@ char	**malloc_map(char *fichier_ber)
 	int		i;
 
 	ligne = nb_lignes_fd(fichier_ber) + 1;
-	printf("ligne = %d\n", ligne);
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
 	map = malloc(sizeof(char *) * (ligne + 1));
