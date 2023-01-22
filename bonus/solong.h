@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 12:09:34 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/22 18:46:55 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../mlx_linux/mlx.h"
+# include "../mlx/mlx.h"
 
 typedef struct s_vector
 {

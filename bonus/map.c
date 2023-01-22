@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 17:16:52 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/22 19:01:19 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,22 +75,22 @@ int	check_map(t_program *program)
 	program->p_map = 0;
 	program->img_pos.x = 0;
 	program->img_pos.y = 0;
-	while (program->map[program->img_pos.y][program->img_pos.x] != '\0')
+	while (program->map[program->img_pos.y])
 	{
-		if (program->map[program->img_pos.y][program->img_pos.x] == 'P')
-			program->p_map++;
-		else if (program->map[program->img_pos.y][program->img_pos.x] == 'E')
-			program->e_map++;
-		else if (program->map[program->img_pos.y][program->img_pos.x] == 'C')
-			program->c_map++;
-		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
-		{
-			program->img_pos.x = 0;
-			program->img_pos.y++;
+		program->img_pos.x = 0;
+		while (program->map[program->img_pos.y][program->img_pos.x])
+		{	
+			if (program->map[program->img_pos.y][program->img_pos.x] == 'P')
+				program->p_map++;
+			else if (program->map[program->img_pos.y][program->img_pos.x] == 'E')
+				program->e_map++;
+			else if (program->map[program->img_pos.y][program->img_pos.x] == 'C')
+				program->c_map++;
+			//not_caracter(program,
+			//	program->map[program->img_pos.y][program->img_pos.x]);
+			program->img_pos.x++;
 		}
-		not_caracter(program,
-			program->map[program->img_pos.y][program->img_pos.x]);
-		program->img_pos.x++;
+		program->img_pos.y++;
 	}
 	return (map_error(program->p_map, program->e_map, program->c_map));
 }

@@ -13,10 +13,10 @@ COMPIL_LINUX = -I/usr/include -Imlx_linux
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	gcc $(OBJS) $(LLINKS) -o $(NAME)
+	gcc $(OBJS) $(MACLINKS) -o $(NAME)
 
 bonus: $(OBJS_BONUS)
-	gcc $(OBJS_BONUS) $(LLINKS) -o $(NAME_BONUS)
+	gcc $(OBJS_BONUS) $(MACLINKS) -o $(NAME_BONUS)
 
 clean: 
 	rm -rf $(OBJS) $(OBJS_BONUS)
@@ -29,4 +29,4 @@ re: fclean all
 .PHONY: all ${NAME} clean flcean re
 
 %.o: %.c
-	gcc $(FLAGS) $(COMPIL_LINUX) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
