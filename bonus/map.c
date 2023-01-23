@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/22 19:01:19 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 13:10:38 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	**mapping(t_program *program, char *fichier_ber)
 		write(1, "La map a pu être ouverte correctement !\n", 42);
 	else
 		write(1, "Il y a eu un problème lors de l'ouverture de la map /n", 56);
+	close(fd);
 	program->map = malloc_map(fichier_ber);
 	return (program->map);
 }
@@ -32,7 +33,7 @@ char	**malloc_map(char *fichier_ber)
 	int		ligne;
 	int		i;
 
-	ligne = nb_lignes_fd(fichier_ber) + 1;
+	ligne = nb_lignes_fd(fichier_ber);
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
 	map = malloc(sizeof(char *) * (ligne + 1));
@@ -61,8 +62,6 @@ int	nb_lignes_fd(char *fichier_ber)
 		i++;
 		line = get_next_line(fd);
 	}
-	if (!line)
-		i--;
 	free(line);
 	close(fd);
 	return (i);

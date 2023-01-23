@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/20 16:20:27 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 12:18:33 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_window	new_window(t_program *program, int widht, int height, char *name)
 
 int	close_wd(t_program *program)
 {
-	free_map(program->map, program->window.size.y / 48);
+	free_map(program->map);
 	free(program);
 	exit(0);
 }
@@ -76,12 +76,12 @@ void	charge_image(t_program *program)
 			"./images/entity/monsters/slime/slime_1.xpm");
 }
 
-void	free_map(char **map, int j)
+void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (i < j)
+	while (map[i])
 	{
 		free(map[i]);
 		i++;

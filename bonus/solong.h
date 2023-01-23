@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/22 18:46:55 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 12:29:09 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int			close_wd(t_program *program);
 t_window	new_window(t_program *program, int widht, int height, char *name);
 int			key_check(int keycode, t_program *program);
 void		charge_image(t_program *program);
-void		free_map(char **map, int j);
+void		free_map(char **map);
 //image.c
 t_image		new_sprite(void *mlx, char *path);
 t_image		new_image(void *mlx, int widht, int height);
@@ -119,6 +119,7 @@ char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strncpy(char *dest, char *src, int n);
 char		*ft_strncat(char *dest, char *src, int n);
+char		*ft_strdup(char *s);
 //map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);

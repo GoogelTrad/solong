@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/22 19:03:10 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 13:18:00 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	start_game(char *ficher_ber)
 	program = calcul_map(program, ficher_ber);
 	if (verif_mur(program))
 		close_wd(program);
-	resolv_map(program);
-	write(1, "4", 1);
+	//resolv_map(program);
 	program->window = new_window(program, program->window.size.x,
 			program->window.size.y, "./so_long");
 	charge_image(program);
@@ -47,7 +46,7 @@ char **init_map(t_program *program)
 	{
 		x = 0;
 		program->img_pos.x = 0;
-		while (program->map[y][x] != '\n')
+		while (program->map[y][x] && program->map[y][x] != '\n')
 		{
 			put_element_map(program, program->map[y][x], x, y);
 			program->img_pos.x += 46;
@@ -71,7 +70,7 @@ void	update_map(t_program *program)
 	{
 		x = 0;
 		program->img_pos.x = 0;
-		while (program->map[y][x] != '\n')
+		while (program->map[y][x] && program->map[y][x] != '\n')
 		{
 			put_element_map(program, program->map[y][x], x, y);
 			program->img_pos.x += 46;
@@ -93,7 +92,7 @@ void	affiche_map(t_program *program)
 	while (program->map[y])
 	{
 		x = 0;
-		while (program->map[y][x] != '\n')
+		while (program->map[y][x] != '\n' && program->map[y][x])
 		{
 			write(1, " ", 1);
 			write(1, &program->map[y][x], 1);
@@ -108,7 +107,6 @@ void	affiche_map(t_program *program)
 t_program	*calcul_map(t_program *program, char *fichier_ber)
 {
 	int	x;
-	int	temp_x;
 	int	y;
 	int	i;
 
@@ -116,18 +114,21 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	x = ft_strlen(program->map[0]);
 	i = 0;
 	y = nb_lignes_fd(fichier_ber);
-	temp_x = x;
-	while (i < y)
+	while (i < y - 1)
 	{
-		x = ft_strlen(program->map[i]);
-		if (temp_x != x)
+		if (ft_strlen(program->map[i]) != x)
 		{
 			error_message("rectangle");
 			close_wd(program);
 		}
 		i++;
 	}
-	program->window.size.x = (temp_x - 1) * 46;
+	if (ft_strlen(program->map[i]) != x - 1)
+	{
+		error_message("rectangle");
+		close_wd(program);
+	}
+	program->window.size.x = (x - 1) * 46;
 	program->window.size.y = y * 48;
 	return (program);
 }

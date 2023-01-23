@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/21 12:09:24 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 12:44:28 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	mv_right(t_program *program)
 		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 50);
 		close_wd(program);
 	}
-	else if ((program->map[y][x + 1] == '0') & touching_mob(program, x + 1, y))
+	else if ((program->map[y][x + 1] == '0') && touching_mob(program, x + 1, y))
 	{
 		program->map[y][x] = program->map[y][x + 1];
 		program->map[y][x + 1] = temp_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:38:02 by cmichez           #+#    #+#             */
-/*   Updated: 2022/12/26 19:38:25 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/23 12:31:38 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*result;
+	int		i;
+
+	i = 0;
+	result = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!result)
+		return (NULL);
+	while (s[i])
+	{
+		result[i] = s[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }
 
 char	*ft_strcpy(char *dest, char *src)
