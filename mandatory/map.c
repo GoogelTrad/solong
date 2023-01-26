@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/14 10:14:33 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:08:56 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	**mapping(t_program *program, char *fichier_ber)
 		write(1, "La map a pu être ouverte correctement !\n", 42);
 	else
 		write(1, "Il y a eu un problème lors de l'ouverture de la map /n", 56);
+	close(fd);
 	program->map = malloc_map(fichier_ber);
 	return (program->map);
 }
@@ -35,12 +36,13 @@ char	**malloc_map(char *fichier_ber)
 	ligne = nb_lignes_fd(fichier_ber);
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
-	map = malloc(sizeof(char *) * ligne);
+	map = malloc(sizeof(char *) * (ligne + 1));
 	while (i < ligne)
 	{
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	map[i] = NULL;
 	close(fd);
 	return (map);
 }
@@ -60,37 +62,36 @@ int	nb_lignes_fd(char *fichier_ber)
 		i++;
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (i);
 }
 
-int	check_map(char **map, t_program *program)
+int	check_map(t_program *program)
 {
-	int	player;
-	int	sortie;
-	int	conso;
-
+	program->c_map = 0;
+	program->e_map = 0;
+	program->p_map = 0;
 	program->img_pos.x = 0;
 	program->img_pos.y = 0;
-	player = 0;
-	sortie = 0;
-	conso = 0;
-	while (map[program->img_pos.y][program->img_pos.x] != '\0')
+	while (program->map[program->img_pos.y])
 	{
-		if (map[program->img_pos.y][program->img_pos.x] == 'P')
-			player++;
-		else if (map[program->img_pos.y][program->img_pos.x] == 'E')
-			sortie++;
-		else if (map[program->img_pos.y][program->img_pos.x] == 'C')
-			conso++;
-		else if (map[program->img_pos.y][program->img_pos.x] == '\n')
-		{
-			program->img_pos.x = 0;
-			program->img_pos.y++;
+		program->img_pos.x = 0;
+		while (program->map[program->img_pos.y][program->img_pos.x])
+		{	
+			if (program->map[program->img_pos.y][program->img_pos.x] == 'P')
+				program->p_map++;
+			else if (program->map[program->img_pos.y][program->img_pos.x] == 'E')
+				program->e_map++;
+			else if (program->map[program->img_pos.y][program->img_pos.x] == 'C')
+				program->c_map++;
+			not_caracter(program,
+				program->map[program->img_pos.y][program->img_pos.x]);
+			program->img_pos.x++;
 		}
-		program->img_pos.x++;
+		program->img_pos.y++;
 	}
-	return (map_error(player, sortie, conso));
+	return (map_error(program->p_map, program->e_map, program->c_map));
 }
 
 int	map_error(int player, int sortie, int conso)

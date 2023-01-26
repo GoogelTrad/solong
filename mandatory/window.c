@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/15 15:34:25 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:10:16 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ t_window	new_window(t_program *program, int widht, int height, char *name)
 	return (window);
 }
 
-int	close_wd(void)
+int	close_wd(t_program *program)
 {
-	write(1, "Arret du programme\n", 19);
+	free_map(program->map);
+	free(program);
 	exit(0);
 }
 
@@ -43,11 +44,12 @@ int	key_check(int keycode, t_program *program)
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);
+		free(program);
 		exit(0);
 	}
 	update_map(program);
-	affiche_map(program->map);
-	write(1, "Nombre de mouvement du joueur : ", 33);
+	affiche_map(program);
+	write(1, "Compteur de mouvement : ", 25);
 	printf_shell_mv(program->move);
 	write(1, "\n", 1);
 	return (0);
@@ -65,4 +67,25 @@ void	charge_image(t_program *program)
 			"./images/tilesets/floors/grass.xpm");
 	program->stock.sortie = new_sprite(program->mlx,
 			"./images/tilesets/floors/hole.xpm");
+	program->player.bd = new_sprite(program->mlx,
+			"./images/entity/characters/player/backward_off_1.xpm");
+	program->player.fd = new_sprite(program->mlx,
+			"./images/entity/characters/player/forward_off_1.xpm");
+	program->player.lt = new_sprite(program->mlx,
+			"./images/entity/characters/player/left_off_1.xpm");
+	program->player.rt = new_sprite(program->mlx,
+			"./images/entity/characters/player/right_off_1.xpm");
+}
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }

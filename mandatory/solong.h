@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 15:42:08 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:06:31 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../mlx_linux/mlx.h"
+# include "../mlx/mlx.h"
 
 typedef struct s_vector
 {
@@ -61,14 +61,23 @@ typedef struct s_player
 {
 	int			pos_x;
 	int			pos_y;
+	t_image		fd;
+	t_image		bd;
+	t_image		lt;
+	t_image		rt;
 	t_vector	vector;
 }				t_player;
 
 typedef struct s_program
 {
 	void		*mlx;
+	int			x;
+	int			y;
 	int			move;
 	char		**map;
+	int			p_map;
+	int			c_map;
+	int			e_map;
 	t_window	window;
 	t_image		sprite;
 	t_vector	sprite_position;
@@ -76,55 +85,58 @@ typedef struct s_program
 	t_player	player;
 	t_stock		stock;
 }				t_program;
-//game.c
+//game.c x
 void		start_game(char *ficher_ber);
 char		**init_map(t_program *program);
-t_program	*calcul_map(t_program *program, char *fichier_ber);
-void		affiche_map(char **map);
+void		affiche_map(t_program *program);
 void		update_map(t_program *program);
-//window.c
-int			close_wd(void);
+t_program	*calcul_map(t_program *program, char *fichier_ber);
+//window.c x
+int			close_wd(t_program *program);
 t_window	new_window(t_program *program, int widht, int height, char *name);
 int			key_check(int keycode, t_program *program);
 void		charge_image(t_program *program);
+void		free_map(char **map);
 //image.c
 t_image		new_sprite(void *mlx, char *path);
 t_image		new_image(void *mlx, int widht, int height);
 void		put_img(t_program *program, t_image img, int x, int y);
-//floors.c
+//floors.c x
 void		put_floor(t_program *program, int x, int y);
 void		put_element_map(t_program *program, char element, int x, int y);
-//parsing.c
+//parsing.c x
 char		*get_next_line(int fd);
 void		reset_buffer(char *buffer);
 int			check_buffer(char **line, char *tmp);
-//utils.c
+//utils.c x 
 int			ft_strlen(char *str);
 char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strncpy(char *dest, char *src, int n);
 char		*ft_strncat(char *dest, char *src, int n);
-//map.c
+char		*ft_strdup(char *s);
+//map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);
+int			check_map(t_program *program);
 int			nb_lignes_fd(char *fichier_ber);
-int			check_map(char **map, t_program *program);
 int			map_error(int player, int sortie, int conso);
 //player.c
 int			mv_forward(t_program *program);
 int			mv_left(t_program *program);
 int			mv_right(t_program *program);
 int			mv_backward(t_program *program);
-//event.c
+void		not_caracter(t_program *program, char element);
+//event.c x
 int			open_chest(t_program *program);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
-//resolver.c
+//resolver.c x
 int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);
-char		**copy_map(t_program *program);
 int			path_finding(t_program *program, char **map, int x, int y);
+char		**copy_map(t_program *program);
 //main.c
 void		check_extension(char *extension, char *fichier);
 void		error_message(char *type);

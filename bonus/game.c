@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 13:18:00 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 14:27:57 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	start_game(char *ficher_ber)
 	program->mlx = mlx_init();
 	program = calcul_map(program, ficher_ber);
 	if (verif_mur(program))
+	{
+		error_message("mur");
 		close_wd(program);
-	//resolv_map(program);
+	}
+	resolv_map(program);
 	program->window = new_window(program, program->window.size.x,
 			program->window.size.y, "./so_long");
 	charge_image(program);

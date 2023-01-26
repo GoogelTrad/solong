@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/19 15:51:58 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:03:15 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	verif_mur(t_program *program)
 		program->img_pos.x++;
 	}
 	program->img_pos.x--;
-	while (program->img_pos.y < temp_y)
+	while (program->img_pos.y < temp_y - 1)
 	{
 		if (program->map[program->img_pos.y][0] != '1'
 			|| program->map[program->img_pos.y][temp_x - 1] != '1')
@@ -42,33 +42,35 @@ int	verif_mur(t_program *program)
 void	resolv_map(t_program *program)
 {
 	char	**map;
+	int		x;
+	int		y;
 
-	if (verif_mur(program))
-		error_message("chemin");
-	program->img_pos.x = 0;
-	program->img_pos.y = 0;
-	while (program->map[program->img_pos.y][program->img_pos.x])
+	y = 0;
+	while (program->map[y])
 	{
-		if (program->map[program->img_pos.y][program->img_pos.x] == 'C' ||
-			program->map[program->img_pos.y][program->img_pos.x] == 'P')
+		x = 0;
+		while (program->map[y][x] != '\n' && program->map[y][x])
 		{
-			map = copy_map(program);
-			if (!path_finding(program, map, program->img_pos.x,
-					program->img_pos.y))
-				error_message("chemin");
-			free(map);
+			if (program->map[y][x] == 'C' || program->map[y][x] == 'P')
+			{
+				map = copy_map(program);
+				if (!path_finding(program, map, x, y))
+				{
+					error_message("chemin");
+					free_map(map);
+					close_wd(program);
+				}
+				free_map(map);
+			}
+			x++;
 		}
-		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
-		{
-			program->img_pos.x = 0;
-			program->img_pos.y++;
-		}
-		program->img_pos.x++;
+		write(1, "\n", 1);
+		y++;
 	}
 }
 
 int	path_finding(t_program *program, char **map, int x, int y)
-{
+{	
 	if (program->map[y][x] == 'E')
 		return (1);
 	if (program->map[y][x] == '1' || map[y][x] == '1')
@@ -92,16 +94,13 @@ int	path_finding(t_program *program, char **map, int x, int y)
 char	**copy_map(t_program *program)
 {
 	int		i;
-	int		j;
 	char	**map;
 
-	j = program->window.size.y / 48;
-	map = malloc(sizeof(char *) * (j + 1));
+	map = malloc(sizeof(char *) * (program->window.size.y / 48 + 1));
 	i = 0;
-	while (i < j)
+	while (program->map[i])
 	{
-		map[i] = malloc(sizeof(char) * (ft_strlen(program->map[i]) + 1));
-		map[i] = ft_strcpy(map[i], program->map[i]);
+		map[i] = ft_strdup(program->map[i]);
 		i++;
 	}
 	map[i] = NULL;

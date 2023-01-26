@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 18:03:22 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/12 15:16:36 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 14:55:55 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ void	put_element_map(t_program *program, char element, int x, int y)
 		put_img(program, program->stock.arbre, program->img_pos.x,
 			program->img_pos.y);
 	else if (element == 'C')
-	{
-		temp_x += 12;
-		temp_y += 24;
-		put_img(program, program->stock.chest, temp_x, temp_y);
-	}
+		put_img(program, program->stock.chest, temp_x + 12, temp_y + 24);
 	else if (element == 'P')
 	{
 		put_img(program, program->stock.player, program->img_pos.x,

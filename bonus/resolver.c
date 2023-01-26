@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 12:40:30 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/25 13:56:14 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	resolv_map(t_program *program)
 	int		y;
 
 	y = 0;
-	affiche_map(program);
 	while (program->map[y])
 	{
 		x = 0;
@@ -55,12 +54,12 @@ void	resolv_map(t_program *program)
 			if (program->map[y][x] == 'C' || program->map[y][x] == 'P')
 			{
 				map = copy_map(program);
-				/*if (!path_finding(program, map, x, y))
+				if (!path_finding(program, map, x, y))
 				{
 					error_message("chemin");
 					free_map(map);
 					close_wd(program);
-				}*/
+				}
 				free_map(map);
 			}
 			x++;
@@ -68,33 +67,7 @@ void	resolv_map(t_program *program)
 		write(1, "\n", 1);
 		y++;
 	}
-	printf("mamie jtm\n");
 }
-
-/*void	resolv_map(t_program *program)
-{
-	char	**map;
-
-	program->img_pos.x = 0;
-	program->img_pos.y = 0;
-	while (program->map[program->img_pos.y][program->img_pos.x])
-	{
-		if (program->map[program->img_pos.y][program->img_pos.x] == 'C' ||
-			program->map[program->img_pos.y][program->img_pos.x] == 'P')
-		{
-			map = copy_map(program);
-			path_not_finding(program, map, program->img_pos.x,
-				program->img_pos.y);
-			free_map(map, program->window.size.y / 48);
-		}
-		else if (program->map[program->img_pos.y][program->img_pos.x] == '\n')
-		{
-			program->img_pos.x = 0;
-			program->img_pos.y++;
-		}
-		program->img_pos.x++;
-	}
-}*/
 
 int	path_finding(t_program *program, char **map, int x, int y)
 {	
