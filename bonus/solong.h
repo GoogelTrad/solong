@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 13:52:11 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:23:58 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,10 @@ int			check_buffer(char **line, char *tmp);
 int			ft_strlen(char *str);
 char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
-char		*ft_strncpy(char *dest, char *src, int n);
 char		*ft_strncat(char *dest, char *src, int n);
 char		*ft_strdup(char *s);
+//utils2.c
+char		*ft_strncpy(char *dest, char *src, int n);
 //map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);

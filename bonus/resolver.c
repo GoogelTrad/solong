@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 13:56:14 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:22:21 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	resolv_map(t_program *program)
 	int		x;
 	int		y;
 
-	y = 0;
-	while (program->map[y])
+	y = -1;
+	while (program->map[++y])
 	{
-		x = 0;
-		while (program->map[y][x] != '\n' && program->map[y][x])
+		x = -1;
+		while (program->map[y][++x] != '\n' && program->map[y][x])
 		{
 			if (program->map[y][x] == 'C' || program->map[y][x] == 'P')
 			{
@@ -62,10 +62,8 @@ void	resolv_map(t_program *program)
 				}
 				free_map(map);
 			}
-			x++;
 		}
 		write(1, "\n", 1);
-		y++;
 	}
 }
 
@@ -94,9 +92,8 @@ int	path_finding(t_program *program, char **map, int x, int y)
 char	**copy_map(t_program *program)
 {
 	int		i;
-	// int		j;
 	char	**map;
-
+	// int		j;
 	// j = program->window.size.y / 48;
 	map = malloc(sizeof(char *) * (program->window.size.y / 48 + 1));
 	i = 0;

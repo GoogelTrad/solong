@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 13:10:38 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:20:04 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ int	check_map(t_program *program)
 		{	
 			if (program->map[program->img_pos.y][program->img_pos.x] == 'P')
 				program->p_map++;
-			else if (program->map[program->img_pos.y][program->img_pos.x] == 'E')
+			else if (program->map[program->img_pos.y]
+				[program->img_pos.x] == 'E')
 				program->e_map++;
-			else if (program->map[program->img_pos.y][program->img_pos.x] == 'C')
+			else if (program->map[program->img_pos.y]
+				[program->img_pos.x] == 'C')
 				program->c_map++;
 			//not_caracter(program,
 			//	program->map[program->img_pos.y][program->img_pos.x]);

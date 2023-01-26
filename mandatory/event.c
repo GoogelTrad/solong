@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:32:36 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 14:55:30 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:10:45 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,3 @@ void	printf_shell_mv(int compteur)
 			ft_putchar(compteur + '0');
 	}
 }
-

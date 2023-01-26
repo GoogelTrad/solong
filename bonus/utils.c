@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:38:02 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 12:31:38 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:22:57 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,5 @@ char	*ft_strncat(char *dest, char *src, int n)
 		j++;
 	}
 	dest[j] = '\0';
-	return (dest);
-}
-
-char	*ft_strncpy(char *dest, char *src, int n)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
 	return (dest);
 }
