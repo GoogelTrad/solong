@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/26 14:12:16 by acolin           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:11:23 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	**mapping(t_program *program, char *fichier_ber)
 
 	fd = open(fichier_ber, O_RDONLY);
 	if (fd)
-		write(1, "La map a pu être ouverte correctement !\n", 42);
+		write(1, "Le fichier a pu être lu correctement !\n", 40);
 	else
-		write(1, "Il y a eu un problème lors de l'ouverture de la map /n", 56);
+		write(1, "Il y a eu un problème lors de l'ouverture de du fichier\n", 57);
 	close(fd);
 	program->map = malloc_map(fichier_ber);
 	return (program->map);
@@ -34,6 +34,11 @@ char	**malloc_map(char *fichier_ber)
 	int		i;
 
 	ligne = nb_lignes_fd(fichier_ber);
+	if (!ligne)
+	{
+		error_message(VIDE);
+		exit(0);
+	}
 	i = 0;
 	fd = open(fichier_ber, O_RDONLY);
 	map = malloc(sizeof(char *) * (ligne + 1));
@@ -62,7 +67,8 @@ int	nb_lignes_fd(char *fichier_ber)
 		i++;
 		line = get_next_line(fd);
 	}
-	free(line);
+	if (line)
+		free(line);
 	close(fd);
 	return (i);
 }

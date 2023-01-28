@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 12:44:28 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:06:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	mv_backward(t_program *program)
 void	not_caracter(t_program *program, char element)
 {
 	if (element != 'M' && element != '1' && element != '0' && element != 'P'
-		&& element != 'C' && element != 'E')
+		&& element != 'C' && element != 'E' && element != '\n')
 	{
 		error_message("caractere");
 		close_wd(program);

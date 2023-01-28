@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 15:10:16 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:49:46 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	key_check(int keycode, t_program *program)
 		exit(0);
 	}
 	update_map(program);
-	affiche_map(program);
 	write(1, "Compteur de mouvement : ", 25);
 	printf_shell_mv(program->move);
 	write(1, "\n", 1);

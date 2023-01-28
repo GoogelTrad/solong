@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 15:11:10 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/27 16:40:19 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	mv_forward(t_program *program)
 		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
-	else if (program->map[y - 1][x] == '0')
+	else if (program->map[y - 1][x] == '0' || program->map[y - 1][x] == 'E')
 	{
 		program->map[y][x] = program->map[y - 1][x];
 		program->map[y - 1][x] = temp_y;
@@ -98,7 +98,7 @@ int	mv_backward(t_program *program)
 		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
-	else if (program->map[y + 1][x] == '0')
+	else if (program->map[y + 1][x] == '0' || program->map[y + 1][x] == 'C')
 	{
 		program->map[y][x] = program->map[y + 1][x];
 		program->map[y + 1][x] = temp_y;

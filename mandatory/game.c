@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:07:23 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/26 14:11:19 by acolin           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:08:40 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	start_game(char *ficher_ber)
 	program = calcul_map(program, ficher_ber);
 	if (verif_mur(program))
 	{
-		error_message("mur");
+		error_message(MUR);
 		close_wd(program);
 	}
 	resolv_map(program);
@@ -120,14 +120,14 @@ t_program	*calcul_map(t_program *program, char *fichier_ber)
 	{
 		if (ft_strlen(program->map[i]) != x)
 		{
-			error_message("rectangle");
+			error_message(RECTANGLE);
 			close_wd(program);
 		}
 		i++;
 	}
 	if (ft_strlen(program->map[i]) != x - 1)
 	{
-		error_message("rectangle");
+		error_message(RECTANGLE);
 		close_wd(program);
 	}
 	program->window.size.x = (x - 1) * 46;

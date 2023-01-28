@@ -1,4 +1,4 @@
-SRCS = mandatory/main.c mandatory/window.c mandatory/event.c mandatory/parsing.c mandatory/map.c mandatory/image.c mandatory/game.c mandatory/floors.c mandatory/player.c mandatory/utils.c mandatory/resolver.c mandatory/utils2.c
+SRCS = mandatory/main.c mandatory/window.c mandatory/event.c mandatory/parsing.c mandatory/map.c mandatory/image.c mandatory/game.c mandatory/floors.c mandatory/player.c mandatory/utils.c mandatory/resolver.c
 BONUS = bonus/main.c bonus/window.c bonus/event.c bonus/parsing.c bonus/map.c bonus/image.c bonus/game.c bonus/floors.c bonus/player.c bonus/utils.c bonus/resolver.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(BONUS:.c=.o)

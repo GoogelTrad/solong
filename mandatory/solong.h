@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/26 14:18:19 by acolin           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:09:47 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# define ARGUMENTS "Arguments incorrects !\n"
+# define MAUVAIS "Map introuvable, mauvais nom de fichier ?\n"
+# define CHEMIN "La map ne peut pas etre resolu !\n"
+# define CARACTERE "Caractere inconnu dans la map !\n"
+# define MUR "La map n'est pas entouré de mur !\n"
+# define EXTENSION "Mauvaise extension de fichier !\n"
+# define RECTANGLE "La map n'est pas rectangulaire !\n"
+# define VIDE "La map donnee est vide !\n"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -114,8 +123,6 @@ char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strncat(char *dest, char *src, int n);
 char		*ft_strdup(char *s);
-//utils2.c
-char		*ft_strncpy(char *dest, char *src, int n);
 //map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);
@@ -138,6 +145,7 @@ int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);
 int			path_finding(t_program *program, char **map, int x, int y);
 char		**copy_map(t_program *program);
+char		*ft_strncpy(char *dest, char *src, int n);
 //main.c
 void		check_extension(char *extension, char *fichier);
 void		error_message(char *type);
