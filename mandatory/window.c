@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 15:49:46 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/31 13:02:15 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	key_check(int keycode, t_program *program)
 		mv_left(program);
 	else if (keycode == 1)
 		mv_backward(program);
-	else if (keycode == 49)
-		open_chest(program);
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);

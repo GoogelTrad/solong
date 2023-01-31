@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 16:09:47 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/01/31 13:11:07 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int			mv_right(t_program *program);
 int			mv_backward(t_program *program);
 void		not_caracter(t_program *program, char element);
 //event.c x
-int			open_chest(t_program *program);
+int 		check_exit(t_program *program);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);

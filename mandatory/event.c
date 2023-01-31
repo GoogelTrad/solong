@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolin <acolin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:32:36 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/26 14:10:45 by acolin           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:11:51 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-
-int	open_chest(t_program *program)
-{
-	int	x;
-	int	y;
-
-	x = program->player.pos_x;
-	y = program->player.pos_y;
-	if (program->map[y - 1][x] == 'C')
-		program->map[y - 1][x] = '0';
-	else if (program->map[y + 1][x] == 'C')
-		program->map[y + 1][x] = '0';
-	else if (program->map[y][x - 1] == 'C')
-		program->map[y][x - 1] = '0';
-	else if (program->map[y][x + 1] == 'C')
-		program->map[y][x + 1] = '0';
-	return (1);
-}
 
 int	check_conso(t_program *program)
 {
@@ -78,4 +60,34 @@ void	printf_shell_mv(int compteur)
 		else
 			ft_putchar(compteur + '0');
 	}
+}
+
+int check_exit(t_program *program)
+{
+	int	x;
+	int	y;
+
+	x = program->player.pos_x;
+	y = program->player.pos_y;
+	if (program->map[y - 1][x] == 'E')
+	{
+		if(program->map[y - 2][x] == 'C')
+			return (1);		
+	}
+	else if (program->map[y + 1][x] == 'E')
+	{
+		if(program->map[y + 2][x] == 'C')
+			return (1);		
+	}
+	else if (program->map[y][x - 1] == 'E')
+	{
+		if(program->map[y][x - 1] == 'C')
+			return (1);		
+	}
+	else if (program->map[y][x + 1] == 'E')
+	{
+		if(program->map[y][x + 1] == 'C')
+			return (1);		
+	}
+	return (0);
 }
