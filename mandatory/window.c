@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/31 13:02:15 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 00:44:35 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	close_wd(t_program *program)
 int	key_check(int keycode, t_program *program)
 {
 	if (keycode == 13)
-		mv_forward(program);
+		move(program, -1, 0);
 	else if (keycode == 2)
-		mv_right(program);
+		move(program, 0, 1);
 	else if (keycode == 0)
-		mv_left(program);
+		move(program, 0, -1);
 	else if (keycode == 1)
-		mv_backward(program);
+		move(program, 1, 0);
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);
@@ -46,9 +46,6 @@ int	key_check(int keycode, t_program *program)
 		exit(0);
 	}
 	update_map(program);
-	write(1, "Compteur de mouvement : ", 25);
-	printf_shell_mv(program->move);
-	write(1, "\n", 1);
 	return (0);
 }
 

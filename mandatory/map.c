@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 16:11:23 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 00:43:41 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	**mapping(t_program *program, char *fichier_ber)
 	if (fd)
 		write(1, "Le fichier a pu être lu correctement !\n", 40);
 	else
-		write(1, "Il y a eu un problème lors de l'ouverture de du fichier\n", 57);
+		write(1, "Il y a eu un problème lors de l'ouverture de du fichier\n",
+			57);
 	close(fd);
 	program->map = malloc_map(fichier_ber);
 	return (program->map);

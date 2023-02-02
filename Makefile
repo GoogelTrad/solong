@@ -10,7 +10,7 @@ MACLINKS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LLINKS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 COMPIL_LINUX = -I/usr/include -Imlx_linux
 
-all: $(NAME)
+all: $(NAME) bonus
 
 $(NAME): $(OBJS)
 	gcc $(OBJS) $(MACLINKS) -o $(NAME)

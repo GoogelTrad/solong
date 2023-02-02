@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:32:36 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/31 13:11:51 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 00:42:20 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	check_conso(t_program *program)
 			y++;
 		}
 		else if (program->map[y][x] == 'C')
-		{
-			write(1, "Il reste des objets à prendre !\n", 34);
 			return (1);
-		}
 		x++;
 	}
 	return (0);
@@ -62,32 +59,20 @@ void	printf_shell_mv(int compteur)
 	}
 }
 
-int check_exit(t_program *program)
+int	check_exit(t_program *program)
 {
 	int	x;
 	int	y;
 
 	x = program->player.pos_x;
 	y = program->player.pos_y;
-	if (program->map[y - 1][x] == 'E')
-	{
-		if(program->map[y - 2][x] == 'C')
-			return (1);		
-	}
-	else if (program->map[y + 1][x] == 'E')
-	{
-		if(program->map[y + 2][x] == 'C')
-			return (1);		
-	}
-	else if (program->map[y][x - 1] == 'E')
-	{
-		if(program->map[y][x - 1] == 'C')
-			return (1);		
-	}
-	else if (program->map[y][x + 1] == 'E')
-	{
-		if(program->map[y][x + 1] == 'C')
-			return (1);		
-	}
+	if (program->map[y - 1][x] == 'E' && program->map[y - 2][x] != '1')
+		return (1);
+	else if (program->map[y + 1][x] == 'E' && program->map[y + 2][x] != '1')
+		return (1);
+	else if (program->map[y][x - 1] == 'E' && program->map[y][x - 1] != '1')
+		return (1);
+	else if (program->map[y][x + 1] == 'E' && program->map[y][x + 1] != '1')
+		return (1);
 	return (0);
 }

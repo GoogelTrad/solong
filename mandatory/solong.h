@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/31 13:11:07 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 00:43:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,12 @@ int			check_map(t_program *program);
 int			nb_lignes_fd(char *fichier_ber);
 int			map_error(int player, int sortie, int conso);
 //player.c
-int			mv_forward(t_program *program);
-int			mv_left(t_program *program);
-int			mv_right(t_program *program);
-int			mv_backward(t_program *program);
 void		not_caracter(t_program *program, char element);
+int			move(t_program *program, int i, int j);
+void		player_move(t_program *program, int i, int j, int increment);
+int			increment_player(t_program *program, char element, int increment);
 //event.c x
-int 		check_exit(t_program *program);
+int			check_exit(t_program *program);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
