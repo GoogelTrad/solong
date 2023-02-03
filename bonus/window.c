@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 12:18:33 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 12:02:28 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ int	close_wd(t_program *program)
 int	key_check(int keycode, t_program *program)
 {
 	if (keycode == 13)
-		mv_forward(program);
+		move(program, -1, 0, 2);
 	else if (keycode == 2)
-		mv_right(program);
+		move(program, 0, 1, 1);
 	else if (keycode == 0)
-		mv_left(program);
+		move(program, 0, -1, 3);
 	else if (keycode == 1)
-		mv_backward(program);
-	else if (keycode == 49)
-		open_chest(program);
+		move(program, 1, 0, 0);
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);
@@ -48,7 +46,6 @@ int	key_check(int keycode, t_program *program)
 		exit(0);
 	}
 	update_map(program);
-	affiche_map(program);
 	return (0);
 }
 
@@ -74,6 +71,7 @@ void	charge_image(t_program *program)
 			"./images/entity/characters/player/right_off_1.xpm");
 	program->stock.mob = new_sprite(program->mlx,
 			"./images/entity/monsters/slime/slime_1.xpm");
+	animation_stock(program);
 }
 
 void	free_map(char **map)

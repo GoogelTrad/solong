@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 15:08:52 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 12:00:30 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# define ARGUMENTS "Arguments incorrects !\n"
+# define MAUVAIS "Map introuvable, mauvais nom de fichier ?\n"
+# define CHEMIN "La map ne peut pas etre resolu !\n"
+# define CARACTERE "Caractere inconnu dans la map !\n"
+# define MUR "La map n'est pas entouré de mur !\n"
+# define EXTENSION "Mauvaise extension de fichier !\n"
+# define RECTANGLE "La map n'est pas rectangulaire !\n"
+# define VIDE "La map donnee est vide !\n"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -62,6 +71,7 @@ typedef struct s_player
 {
 	int			pos_x;
 	int			pos_y;
+	t_image		anime[4];
 	t_image		fd;
 	t_image		bd;
 	t_image		lt;
@@ -100,7 +110,6 @@ void		charge_image(t_program *program);
 void		free_map(char **map);
 //image.c
 t_image		new_sprite(void *mlx, char *path);
-t_image		new_image(void *mlx, int widht, int height);
 void		put_img(t_program *program, t_image img, int x, int y);
 //floors.c x
 void		put_floor(t_program *program, int x, int y);
@@ -112,15 +121,12 @@ char		*ft_itoa(int n);
 char		*get_next_line(int fd);
 void		reset_buffer(char *buffer);
 int			check_buffer(char **line, char *tmp);
-
 //utils.c x 
 int			ft_strlen(char *str);
 char		*ft_strcat(char *dest, char *src);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strncat(char *dest, char *src, int n);
 char		*ft_strdup(char *s);
-//utils2.c
-
 //map.c x 
 char		**mapping(t_program *program, char *fichier_ber);
 char		**malloc_map(char *fichier_ber);
@@ -128,17 +134,17 @@ int			check_map(t_program *program);
 int			nb_lignes_fd(char *fichier_ber);
 int			map_error(int player, int sortie, int conso);
 //player.c
-int			mv_forward(t_program *program);
-int			mv_left(t_program *program);
-int			mv_right(t_program *program);
-int			mv_backward(t_program *program);
 void		not_caracter(t_program *program, char element);
+int			move(t_program *program, int i, int j, int direction);
+void		player_move(t_program *program, int i, int j, int increment);
+int			increment_player(t_program *program, char element, int increment);
+void		animation_stock(t_program *program);
 //event.c x
-int			open_chest(t_program *program);
+int			check_exit(t_program *program);
+int			touching_mob(t_program *program, int x, int y);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
-int			touching_mob(t_program *program, int x, int y);
 //resolver.c x
 int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);

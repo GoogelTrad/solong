@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 00:43:25 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 10:23:08 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void		charge_image(t_program *program);
 void		free_map(char **map);
 //image.c
 t_image		new_sprite(void *mlx, char *path);
-t_image		new_image(void *mlx, int widht, int height);
 void		put_img(t_program *program, t_image img, int x, int y);
 //floors.c x
 void		put_floor(t_program *program, int x, int y);

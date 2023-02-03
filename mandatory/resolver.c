@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:16:14 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 15:09:02 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 10:21:19 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	resolv_map(t_program *program)
 				map = copy_map(program);
 				if (!path_finding(program, map, x, y))
 				{
-					error_message("chemin");
+					error_message(CHEMIN);
 					free_map(map);
 					close_wd(program);
 				}

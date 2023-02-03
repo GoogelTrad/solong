@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/25 14:26:20 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 12:03:28 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,37 @@
 int	main(int argc, char **argv)
 {
 	if (argc == 2)
-		check_extension("ber", argv[1]);
+		check_extension(".ber", argv[1]);
+	else
+		error_message(ARGUMENTS);
 	return (0);
 }
 
 void	check_extension(char *extension, char *fichier)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (fichier[i])
-	{	
-		if (fichier[i] == '.')
-		{	
-			i++;
-			j = 0;
-			while (fichier[i++] == extension[j] && j < 3)
-				j++;
-			if (j == 3)
-			{
-				if (open(fichier, O_RDONLY) == -1)
-					error_message("mauvais");
-				else
-					start_game(fichier);
-				break ;
-			}
-			else
-				error_message("extension");
-		}
 		i++;
+	i -= ft_strlen(extension);
+	if (strcmp(fichier + i, extension) != 0)
+	{
+		error_message(EXTENSION);
+		exit(0);
 	}
+	if (read(open(fichier, O_RDONLY), 0, 0) == -1)
+	{
+		error_message(MAUVAIS);
+		exit(0);
+	}
+	start_game(fichier);
 }
 
 void	error_message(char *type)
 {
 	write(1, "Error\n", 6);
-	if (ft_strncmp(type, "extension", 10) == 0)
-		write(1, "Mauvaise extension de fichier\n", 30);
-	else if (ft_strncmp(type, "mauvais", 7) == 0)
-		write(1, "Map introuvable, mauvais nom de fichier ?\n", 42);
-	else if (ft_strncmp(type, "chemin", 6) == 0)
-		write(1, "La map ne peut pas etre resolu !\n", 33);
-	else if (ft_strncmp(type, "caractere", 9) == 0)
-		write(1, "Caractere inconnu dans la map !\n", 32);
-	else if (ft_strncmp(type, "rectangle", 9) == 0)
-		write(1, "La map n'est pas rectangulaire !\n", 33);
-	else if (ft_strncmp(type, "mur", 3) == 0)
-		write(1, "La map n'est pas entouré de mur !\n", 35);
+	write(1, type, ft_strlen(type));
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
