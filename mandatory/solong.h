@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 10:23:08 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 15:09:30 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define EXTENSION "Mauvaise extension de fichier !\n"
 # define RECTANGLE "La map n'est pas rectangulaire !\n"
 # define VIDE "La map donnee est vide !\n"
+# define CONFORME "Le nom de fichier n'est pas conforme !\n"
 
 # include <stdlib.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 12:03:28 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 15:08:48 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	check_extension(char *extension, char *fichier)
 	while (fichier[i])
 		i++;
 	i -= ft_strlen(extension);
+	if (i - ft_strlen("bonus/") == 0)
+	{
+		error_message(CONFORME);
+		exit(0);
+	}
 	if (strcmp(fichier + i, extension) != 0)
 	{
 		error_message(EXTENSION);

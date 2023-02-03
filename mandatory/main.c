@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:10:48 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/27 16:08:03 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 15:10:51 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	check_extension(char *extension, char *fichier)
 	while (fichier[i])
 		i++;
 	i -= ft_strlen(extension);
+	if (i - ft_strlen("mandatory/") == 0)
+	{
+		error_message(CONFORME);
+		exit(0);
+	}
 	if (strcmp(fichier + i, extension) != 0)
 	{
 		error_message(EXTENSION);
