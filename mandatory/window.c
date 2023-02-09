@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:12:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 00:44:35 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/09 15:53:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	key_check(int keycode, t_program *program)
 		move(program, 0, -1);
 	else if (keycode == 1)
 		move(program, 1, 0);
+	else if (keycode == 34)
+		move_t(program);
 	else if (keycode == 53)
 	{
 		write(1, "Arret du programme\n", 19);

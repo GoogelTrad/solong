@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 15:09:30 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/09 15:53:18 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 # define ARGUMENTS "Arguments incorrects !\n"
 # define MAUVAIS "Map introuvable, mauvais nom de fichier ?\n"
-# define CHEMIN "La map ne peut pas etre resolu !\n"
+# define CHEMIN "La map ne peut pas etre resolue !\n"
 # define CARACTERE "Caractere inconnu dans la map !\n"
-# define MUR "La map n'est pas entouré de mur !\n"
+# define MUR "La map n'est pas entourée de mur !\n"
 # define EXTENSION "Mauvaise extension de fichier !\n"
 # define RECTANGLE "La map n'est pas rectangulaire !\n"
 # define VIDE "La map donnee est vide !\n"
@@ -139,6 +139,9 @@ int			check_exit(t_program *program);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
+//path.c
+int			limit_wall(t_program *program, int x, int y);
+int			move_t(t_program *program);
 //resolver.c x
 int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);

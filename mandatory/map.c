@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:12:58 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 00:43:41 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/07 17:33:21 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**mapping(t_program *program, char *fichier_ber)
 
 	fd = open(fichier_ber, O_RDONLY);
 	if (fd)
-		write(1, "Le fichier a pu être lu correctement !\n", 40);
+		write(1, "Le fichier a pu être lu correctement !", 40);
 	else
 		write(1, "Il y a eu un problème lors de l'ouverture de du fichier\n",
 			57);

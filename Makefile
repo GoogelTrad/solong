@@ -1,5 +1,5 @@
-SRCS = mandatory/main.c mandatory/window.c mandatory/event.c mandatory/parsing.c mandatory/map.c mandatory/image.c mandatory/game.c mandatory/floors.c mandatory/player.c mandatory/utils.c mandatory/resolver.c
-BONUS = bonus/main.c bonus/window.c bonus/event.c bonus/parsing.c bonus/map.c bonus/image.c bonus/game.c bonus/floors.c bonus/player.c bonus/utils.c bonus/resolver.c
+SRCS = mandatory/main.c mandatory/window.c mandatory/event.c mandatory/parsing.c mandatory/map.c mandatory/image.c mandatory/game.c mandatory/floors.c mandatory/player.c mandatory/utils.c mandatory/resolver.c mandatory/path.c
+BONUS = bonus/main.c bonus/window.c bonus/event.c bonus/parsing.c bonus/map.c bonus/image.c bonus/game.c bonus/floors.c bonus/player.c bonus/utils.c bonus/resolver.c bonus/path.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(BONUS:.c=.o)
 CC = gcc
@@ -10,7 +10,10 @@ MACLINKS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LLINKS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 COMPIL_LINUX = -I/usr/include -Imlx_linux
 
-all: $(NAME) bonus
+all: $(NAME)
+
+%.o: %.c
+	gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	gcc $(OBJS) $(MACLINKS) -o $(NAME)
@@ -25,8 +28,3 @@ fclean: clean
 	rm -rf $(NAME) $(NAME_BONUS)
 
 re: fclean all
-
-.PHONY: all ${NAME} clean flcean re
-
-%.o: %.c
-	gcc $(FLAGS) -c $< -o $@

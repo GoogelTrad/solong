@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:00:16 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 15:06:02 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/09 15:52:52 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,9 @@ int			touching_mob(t_program *program, int x, int y);
 int			check_conso(t_program *program);
 void		printf_shell_mv(int compteur);
 void		ft_putchar(char c);
+//path.c
+int			limit_wall(t_program *program, int x, int y);
+int			move_t(t_program *program);
 //resolver.c x
 int			verif_mur(t_program *program);
 void		resolv_map(t_program *program);

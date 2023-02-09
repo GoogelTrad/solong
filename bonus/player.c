@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:19:45 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/03 12:04:03 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/03 19:49:17 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	move(t_program *program, int i, int j, int direction)
 	else if (program->map[y + (i * increment)][x + (j * increment)] == 'E'
 		&& increment == 1)
 	{
-		write(1, "Bien joué, vous avez réussi à vous échappez !\n", 51);
+		write(1, "Bien joué, vous avez réussi à vous échapper !\n", 51);
 		close_wd(program);
 	}
 	return (1);
