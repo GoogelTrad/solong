@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmichez <cmichez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 18:03:22 by cmichez           #+#    #+#             */
-/*   Updated: 2023/01/23 13:18:04 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:15:48 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	put_text(t_program *program, int x, int y)
 
 	pas = ft_itoa(program->move);
 	mlx_string_put(program->mlx, program->window.reference, x, y,
-		0x00FF1F1F, pas);
+		0x00FFFFFF, pas);
 	free(pas);
 }
 
